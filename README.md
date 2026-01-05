@@ -3,8 +3,8 @@ Vaulta is a Web3 banking-focused blockchain and crypto platform (rebranded from 
 <br>
 Vaulta aims to provide a complete banking layer on blockchain that supports:
 <br><br>
-  <li>Wealth management tools
-  <li>Consumer payments with fast settlement
-  <li>Portfolio investments and tokenized real-world assets
-  <li>Insurance solutions tailored for crypto <br><br>
+>>  <li>Wealth management tools
+>>  <li>Consumer payments with fast settlement
+>>  <li>Portfolio investments and tokenized real-world assets
+>>  <li>Insurance solutions tailored for crypto <br><br>
 This brings services traditionally offered by banks into the crypto world.
