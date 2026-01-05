@@ -20,3 +20,21 @@ Vaulta aims to provide a complete banking layer on blockchain that supports:
 <p>
 This brings services traditionally offered by banks into the crypto world.
 </p>
+
+
+## Animation Types
+
+Vaulta UI animations support a flexible set of predefined effects and spring presets, allowing smooth and customizable motion behavior across components.
+
+### Animation Effects
+
+```ts
+type AnimationEffect =
+  | 'fade-up'
+  | 'fade-down'
+  | 'fade-left'
+  | 'fade-right'
+  | 'scale-up'
+  | 'scale-down'
+  | 'blur-up'
+  | 'rotate-up'
