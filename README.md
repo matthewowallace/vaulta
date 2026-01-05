@@ -1,12 +1,22 @@
-<h2>Vaulta</h2> 
-Vaulta is a Web3 banking-focused blockchain and crypto platform (rebranded from EOS) designed to merge traditional financial services with decentralized crypto technology. It’s more than just a wallet app it’s a full financial operating system for Web3 that supports banking-like functions, payments, investing, and programmable finance tools.
-<br>
+<h2>Vaulta</h2>
+
+<p>
+Vaulta is a Web3 banking-focused blockchain and crypto platform (rebranded from EOS) designed to merge traditional financial services with decentralized crypto technology. It’s more than just a wallet app — it’s a full financial operating system for Web3 that supports banking-like functions, payments, investing, and programmable finance tools.
+</p>
+
+<p>
 Vaulta aims to provide a complete banking layer on blockchain that supports:
-<br><br>
+</p>
+
 <div style="margin-left: 20px;">
-   <li>Wealth management tools
-   <li>Consumer payments with fast settlement
-   <li>Portfolio investments and tokenized real-world assets
-   <li>Insurance solutions tailored for crypto <br><br>
- </div>
+  <ul>
+    <li>Wealth management tools</li>
+    <li>Consumer payments with fast settlement</li>
+    <li>Portfolio investments and tokenized real-world assets</li>
+    <li>Insurance solutions tailored for crypto</li>
+  </ul>
+</div>
+
+<p>
 This brings services traditionally offered by banks into the crypto world.
+</p>
