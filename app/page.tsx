@@ -1,8 +1,14 @@
+import CryptoDashboard from "@/components/CryptoDashboard";
+
+"use-client";
 import Image from "next/image";
 import DataTable from "@/components/DataTable";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {TrendingDown, TrendingUp} from "lucide-react";
+import VisualizationCard from "@/components/VisualizationCard";
+import CryptoVisualizationCard from "@/components/CryptoVisualizationCard";
+import InteractiveGaugeCard from "@/components/InteractiveGaugeCard";
 
 const columns: DataTableColumn<TrendingCoin>[] = [
     {
@@ -82,12 +88,12 @@ const dummyTrendingCoins: TrendingCoin[] = [
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div>
       <main className="main-container">
         <section className={"home-grid"}>
             <div id={"coin-overview"}>
-                <div className={"header"}>
-                    <Image src="/wired-outline-2588-logo-bitcoin-hover-roll.svg" alt="Bitcoinlogo" width={132} height={40}/>
+                <div className={"header p-3"}>
+                    <Image src="/wired-outline-2588-logo-bitcoin-hover-roll.svg" alt="Bitcoinlogo" width={50} height={20}/>
                     <div className={"info"}>
                         <p>BitCoin / BTC</p>
                         <h1>$89,113.00</h1>
@@ -95,11 +101,17 @@ export default function Page() {
                 </div>
             </div>
             <p>Trending Coins</p>
-            <DataTable 
-                data={dummyTrendingCoins}
-                columns={columns}
-                rowKey={(coin) => coin.item.id}
-            />
+            <div id={"trending-coins"}>
+                <DataTable
+                    data={dummyTrendingCoins}
+                    columns={columns}
+                    rowKey={(coin) => coin.item.id}
+                    tableClassName={"trending-coins-table"}
+                />
+            </div>
+            <div>
+                <CryptoDashboard />
+            </div>
         </section>
         <section className={"w-full mt-7 space-y-4"}>
             <p>Categories</p>
