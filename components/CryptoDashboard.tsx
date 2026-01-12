@@ -55,7 +55,7 @@ const CryptoDashboard = () => {
         </button>
 
         {/* Card Container */}
-        <div className="w-full max-w-2xl transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-12 shadow-sm border border-gray-200 dark:border-zinc-800">
+        <div className="flex flex-col transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-12 shadow-sm border border-gray-200 dark:border-zinc-800">
 
           {/* Header Section */}
           <div className="flex justify-between items-start mb-14">
