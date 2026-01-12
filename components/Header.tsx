@@ -12,7 +12,6 @@ const Header = () => {
 
     return (
         <header>
-            Header
             <div className={"main-container inner"}>
                 <Link href={"/"}>
                     <Image src="/Atlantic-colored.svg" alt="logo" width={132} height={40}/>
