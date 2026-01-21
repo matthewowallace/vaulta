@@ -40,6 +40,9 @@ import CoinOverview from "@/components/home/CoinOverview";
 import TrendingCoins from "@/components/home/TrendingCoins";
 import {CoinOverviewFallback, CryptoDashboardFallback, TrendingCoinsFallback} from "@/components/home/fallback";
 import CryptoDashboard from "@/components/CryptoDashboard";
+import BitcoinLiquidationChart from "@/components/AnalyticsCard";
+import AnalyticsCard from "@/components/AnalyticsCard";
+import Dashboard from "@/components/AnalyticsCard";
 
 const Page = async () => {
 
@@ -53,10 +56,16 @@ const Page = async () => {
             <Suspense fallback={<TrendingCoinsFallback />}>
                 <TrendingCoins />
             </Suspense>
-            <Suspense fallback={<CryptoDashboardFallback />}>
-                <CryptoDashboard />
-            </Suspense>
         </section>
+          <section className={"home-grid"}>
+              <Suspense fallback={<CryptoDashboardFallback />}>
+                  <CryptoDashboard />
+              </Suspense>
+              <div id={"coin-overview"}>
+                  <AnalyticsCard />
+              </div>
+          </section>
+
         <section className={"w-full mt-7 space-y-4"}>
             <p>Categories</p>
         </section>

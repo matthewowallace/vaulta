@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import {ChevronDown} from "lucide-react";
 
 const CryptoDashboard = () => {
   const [data, setData] = useState({ percentage: 0, price: '0.00', name: 'Bitcoin' });
@@ -55,14 +56,11 @@ const CryptoDashboard = () => {
         </button>
 
         {/* Card Container */}
-        <div className="flex flex-col transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-12 shadow-sm border border-gray-200 dark:border-zinc-800">
+        <div className="flex flex-col transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-zinc-800">
 
           {/* Header Section */}
           <div className="flex justify-between items-start mb-14">
-            <h2 className="text-3xl font-light text-gray-900 dark:text-zinc-100 leading-tight">
-              <span className="font-bold">Live Market:</span> {data.name}
-              <div className="text-sm text-gray-500 dark:text-zinc-500 font-medium mt-1">Current: ${data.price}</div>
-            </h2>
+            <div className="flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-white transition-colors">Live Market: {data.name} Current: ${data.price}</div>
             <div className="flex items-center gap-2 bg-white dark:bg-zinc-800 px-3 py-1 rounded-full border border-gray-100 dark:border-zinc-700 shadow-sm">
               <div className={`w-2 h-2 rounded-full ${isLive ? 'bg-green-500 animate-pulse' : 'bg-gray-300 dark:bg-zinc-600'}`} />
               <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-zinc-400">
@@ -136,3 +134,4 @@ const CryptoDashboard = () => {
 };
 
 export default CryptoDashboard;
+
