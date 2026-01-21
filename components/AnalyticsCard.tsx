@@ -1,97 +1,122 @@
 "use client";
-import React, { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
+
+import React, { useState, useEffect, useMemo } from "react";
+import axios from "axios";
 import {
-    AreaChart, Area, XAxis, YAxis, Tooltip,
-    ResponsiveContainer, ReferenceLine, CartesianGrid, Brush
-} from 'recharts';
-import { ChevronDown, Activity } from 'lucide-react';
+    AreaChart,
+    Area,
+    XAxis,
+    YAxis,
+    Tooltip,
+    ResponsiveContainer,
+    ReferenceLine,
+    CartesianGrid,
+    Brush,
+} from "recharts";
+import { ChevronDown, Activity } from "lucide-react";
 
 const AnalyticsDashboard = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [hoverIndex, setHoverIndex] = useState(null);
+    const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+    // 🔹 NEW: Brush range state
+    const [range, setRange] = useState({ startIndex: 0, endIndex: 0 });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await axios.get(
-                    'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily'
+                    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily"
                 );
-                const formatted = res.data.prices.map((price) => ({
+
+                const formatted = res.data.prices.map((price: any) => ({
                     time: price[0],
                     val: Math.round(price[1]),
-                    // Extract full month name for the footer labels
-                    month: new Date(price[0]).toLocaleString('default', { month: 'long' }),
-                    displayDate: new Date(price[0]).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+                    month: new Date(price[0]).toLocaleString("default", {
+                        month: "long",
+                    }),
+                    displayDate: new Date(price[0]).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                    }),
                 }));
+
                 setData(formatted);
+                setRange({
+                    startIndex: 0,
+                    endIndex: formatted.length - 1,
+                });
                 setLoading(false);
             } catch (err) {
                 console.error("CoinGecko Error:", err);
             }
         };
+
         fetchData();
     }, []);
 
-    /**
-     * DYNAMIC LABEL LOGIC
-     * This creates a spread of labels (Oversold -> Month -> Neutral -> Month -> Overbought)
-     * based on the actual months present in your fetched data.
-     */
     const dynamicLabels = useMemo(() => {
-        if (data.length === 0) return [];
+        if (!data.length) return [];
 
-        // Helper to get month at specific percentage of the data array
-        const getMonthAt = (percent) => data[Math.floor((data.length - 1) * percent)].month;
+        const getMonthAt = (percent: number) =>
+            data[Math.floor((data.length - 1) * percent)].month;
 
         return [
             { label: "Oversold", type: "sentiment" },
             { label: getMonthAt(0.25), type: "month" },
             { label: "Neutral", type: "sentiment" },
             { label: getMonthAt(0.75), type: "month" },
-            { label: "Overbought", type: "sentiment" }
+            { label: "Overbought", type: "sentiment" },
         ];
     }, [data]);
 
-    const activePoint = hoverIndex !== null ? data[hoverIndex] : null;
+    const activePoint =
+        hoverIndex !== null && data[hoverIndex]
+            ? data[hoverIndex]
+            : null;
 
-    if (loading) return (
-        <div className="flex h-[600px] md:h-full w-full items-center justify-center rounded-[2rem] bg-[#161616] text-zinc-500">
-            <Activity className="mr-2 animate-spin" size={20} /> Updating Market...
-        </div>
-    );
+    if (loading) {
+        return (
+            <div className="flex h-[600px] w-full items-center justify-center rounded-[2rem] bg-[#161616] text-zinc-500">
+                <Activity className="mr-2 animate-spin" size={20} />
+                Updating Market...
+            </div>
+        );
+    }
 
     return (
-        <div className="relative flex h-[600px] md:h-full w-full flex-col overflow-hidden p-6 sm:p-8 font-sans text-white  rounded-[2rem]">
+        <div className="relative flex h-[600px] w-full flex-col overflow-hidden rounded-[2rem] p-6 sm:p-8 text-white">
 
-            {/* Header Section */}
-            <div className="relative z-20 mb-4 flex shrink-0 items-center justify-between">
-                <button className="flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-white transition-colors">
+            {/* Header */}
+            <div className="relative z-20 mb-4 flex items-center justify-between">
+                <button className="flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-white">
                     <ChevronDown size={16} />
                     Bitcoin Analytics: Q1 | 2026
                 </button>
+
                 <div className="flex items-center gap-2 rounded-full border border-zinc-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF5A1F] animate-pulse" />
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#FF5A1F]" />
                     Live
                 </div>
             </div>
 
-            {/* Background Watermark */}
+            {/* Watermark */}
             <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center opacity-[0.02]">
-                <h1 className="select-none text-[25vw] font-black tracking-tighter text-white">
-                    analytics
+                <h1 className="select-none text-[25vw] font-black tracking-tighter">
+
                 </h1>
             </div>
 
-            {/* Main Chart Area */}
+            {/* Chart */}
             <div className="relative z-10 flex-1 min-h-0 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                         data={data}
-                        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
                         onMouseMove={(e) => {
-                            if (e && e.activeTooltipIndex !== undefined) setHoverIndex(e.activeTooltipIndex);
+                            if (e?.activeTooltipIndex !== undefined) {
+                                setHoverIndex(e.activeTooltipIndex);
+                            }
                         }}
                         onMouseLeave={() => setHoverIndex(null)}
                     >
@@ -102,12 +127,27 @@ const AnalyticsDashboard = () => {
                             </linearGradient>
                         </defs>
 
-                        <CartesianGrid stroke="#ffffff" strokeDasharray="3 3" vertical={false} opacity={0.05} />
+                        <CartesianGrid
+                            stroke="#ffffff"
+                            strokeDasharray="3 3"
+                            vertical={false}
+                            opacity={0.05}
+                        />
 
                         {activePoint && (
                             <>
-                                <ReferenceLine x={activePoint.time} stroke="#ffffff" strokeWidth={1} strokeDasharray="4 4" opacity={0.4} />
-                                <ReferenceLine y={activePoint.val} stroke="#ffffff" strokeWidth={1} strokeDasharray="4 4" opacity={0.4} />
+                                <ReferenceLine
+                                    x={activePoint.time}
+                                    stroke="#fff"
+                                    strokeDasharray="4 4"
+                                    opacity={0.4}
+                                />
+                                <ReferenceLine
+                                    y={activePoint.val}
+                                    stroke="#fff"
+                                    strokeDasharray="4 4"
+                                    opacity={0.4}
+                                />
                             </>
                         )}
 
@@ -119,26 +159,24 @@ const AnalyticsDashboard = () => {
                             tickLine={false}
                             width={60}
                             mirror
-                            tick={{ fill: '#71717a', fontSize: 12, fontWeight: 600 }}
-                            domain={['auto', 'auto']}
-                            tickFormatter={(val) => `$${Math.round(val/1000)}k`}
+                            tick={{ fill: "#71717a", fontSize: 12, fontWeight: 600 }}
+                            tickFormatter={(v) => `$${Math.round(v / 1000)}k`}
                         />
 
                         <Tooltip
                             cursor={false}
-                            content={({ active, payload }) => {
-                                if (active && payload && payload.length) {
-                                    return (
-                                        <div className="rounded-xl border border-white/10 bg-black/90 p-3 text-xs backdrop-blur-md shadow-2xl ring-1 ring-white/10">
-                                            <p className="text-zinc-500 mb-1">{payload[0].payload.displayDate}</p>
-                                            <p className="text-[#FF5A1F] text-sm font-black tracking-tight">
-                                                ${payload[0].value.toLocaleString()}
-                                            </p>
-                                        </div>
-                                    );
-                                }
-                                return null;
-                            }}
+                            content={({ active, payload }) =>
+                                active && payload?.length ? (
+                                    <div className="rounded-xl border border-white/10 bg-black/90 p-3 text-xs backdrop-blur-md">
+                                        <p className="mb-1 text-zinc-500">
+                                            {payload[0].payload.displayDate}
+                                        </p>
+                                        <p className="text-sm font-black text-[#FF5A1F]">
+                                            ${payload[0].value.toLocaleString()}
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
                         />
 
                         <Area
@@ -147,32 +185,60 @@ const AnalyticsDashboard = () => {
                             stroke="#FF5A1F"
                             strokeWidth={2}
                             fill="url(#chartGradient)"
-                            activeDot={{ r: 6, fill: '#fff', stroke: '#161616', strokeWidth: 3 }}
+                            activeDot={{
+                                r: 6,
+                                fill: "#fff",
+                                stroke: "#161616",
+                                strokeWidth: 3,
+                            }}
                         />
 
+                        {/* 🔹 Range Info */}
                         <Brush
-                            dataKey="time"
+
                             height={40}
                             stroke="#FF5A1F"
-                            fill="transparent"
-                            gap={10}
                             travellerWidth={10}
-                            tickFormatter={() => ""}
+                            onChange={(e) => {
+                                if (e?.startIndex !== undefined) {
+                                    setRange(e);
+                                }
+                            }}
                         >
                             <AreaChart data={data}>
-                                <Area type="monotone" dataKey="val" fill="#FF5A1F" fillOpacity={0.1} stroke="none" />
+                                <Area
+                                    type="monotone"
+                                    dataKey="val"
+                                    fill="#FF5A1F"
+                                    fillOpacity={0.15}
+                                    stroke="none"
+                                />
                             </AreaChart>
                         </Brush>
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
 
-            {/* --- FIX: Dynamic Month/Sentiment Labels --- */}
-            <div className="pointer-events-none relative z-20 mt-6 flex justify-between px-2 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-zinc-700">
-                {dynamicLabels.map((item, index) => (
+            {/* 🔹 Slider Value Display */}
+            <div className="mt-3 flex justify-between text-[11px] font-semibold text-zinc-500">
+                <span>{data[range.startIndex]?.displayDate}</span>
+                <span className="text-[#FF5A1F]">
+                    ${data[range.startIndex]?.val.toLocaleString()} → $
+                    {data[range.endIndex]?.val.toLocaleString()}
+                </span>
+                <span>{data[range.endIndex]?.displayDate}</span>
+            </div>
+
+            {/* Footer Labels */}
+            <div className="pointer-events-none mt-6 flex justify-between px-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-700">
+                {dynamicLabels.map((item, i) => (
                     <span
-                        key={index}
-                        className={item.type === 'month' ? "text-zinc-500/50 italic" : "text-zinc-700"}
+                        key={i}
+                        className={
+                            item.type === "month"
+                                ? "italic text-zinc-500/50"
+                                : ""
+                        }
                     >
                         {item.label}
                     </span>
