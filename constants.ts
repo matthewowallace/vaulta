@@ -21,14 +21,14 @@ export const navItems = [
 ];
 
 const CHART_COLORS = {
-    background: '#0b1116',
-    text: '#8f9fb1',
-    grid: '#1a2332',
+    background: 'lab(8.30603% .618212 -2.16573)',
+    text: '#A3AED0',
+    grid: '#39393C',
     border: '#1a2332',
-    crosshairVertical: '#ffffff40',
-    crosshairHorizontal: '#ffffff20',
-    candleUp: '#158A6E',
-    candleDown: '#EB1C36',
+    crosshairVertical: '#A3AED0',
+    crosshairHorizontal: '#A3AED0',
+    candleUp: '#76da44',
+    candleDown: '#ff5a1f',
 } as const;
 
 export const getCandlestickConfig = (): CandlestickSeriesPartialOptions => ({
@@ -101,7 +101,6 @@ export const PERIOD_CONFIG: Record<
     '3months': { days: 90, interval: 'daily' },
     '6months': { days: 180, interval: 'daily' },
     yearly: { days: 365 },
-    max: { days: 'max' },
 };
 
 export const PERIOD_BUTTONS: { value: Period; label: string }[] = [
@@ -111,7 +110,6 @@ export const PERIOD_BUTTONS: { value: Period; label: string }[] = [
     { value: '3months', label: '3M' },
     { value: '6months', label: '6M' },
     { value: 'yearly', label: '1Y' },
-    { value: 'max', label: 'Max' },
 ];
 
 export const LIVE_INTERVAL_BUTTONS: { value: '1s' | '1m'; label: string }[] = [
