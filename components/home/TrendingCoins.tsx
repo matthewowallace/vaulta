@@ -1,78 +1,30 @@
 import React from 'react'
-import {fetcher} from "@/lib/coingecko.action";
-import Link from "next/link";
-import Image from "next/image";
-import {cn, formatCurrency} from "@/lib/utils";
-import {TrendingDown, TrendingUp} from "lucide-react";
-import DataTable from "@/components/DataTable";
-import CryptoDashboard from "@/components/CryptoDashboard";
-import {CoinOverviewFallback, TrendingCoinsFallback} from "@/components/home/fallback";
+import { fetcher } from "@/lib/coingecko.action";
+import { TrendingCoinsFallback } from "@/components/home/fallback";
+import TrendingList from "@/components/TrendingCoinsList";
 
 const TrendingCoins = async () => {
-    let trendingCoins
-    try{
-        trendingCoins = await fetcher<{coins: TrendingCoin[]}>
-    ('/search/trending', undefined, 300)
-    } catch(error) {
-        console.error('Error fetching trending coins not found', error);
-        return <TrendingCoinsFallback/>;
+    let trendingData;
+
+    try {
+        // Fetching 20 coins to have enough data for "Show More"
+        trendingData = await fetcher<{ coins: any[] }>('/search/trending', undefined, 300);
+    } catch (error) {
+        console.error('Error fetching trending coins:', error);
+        return <TrendingCoinsFallback />;
     }
 
-    const columns: DataTableColumn<TrendingCoin>[] = [
-        {
-            header: "Name",
-            cellClassName: "name-cell",
-            cell: (coin)=> {
-                const item = coin.item;
-                return (
-                    <Link href={`/coins/${item.id}`} className="flex items-center gap-2">
-                        <Image src={item.large} alt={item.name} width={36} height={36} />
-                        <p>{item.name}</p>
-                    </Link>
-                );
-            }},
-        {
-            header: "24h Change",
-            cellClassName: "name-cell",
-            cell: (coin)=> {
-                const item = coin.item;
-                const isTrending = item.data.price_change_percentage_24h.usd > 0;
-                return(
-                    <div className={cn('price-change', isTrending ? 'text-green-500': 'text-red-500' )}>
-                        <p className="flex items-center gap-1">
-                            {isTrending ? (
-                                    <TrendingUp width={16} height={16} /> ) :
-                                <TrendingDown width={16} height={16} />
-                            }
-                            {item.data.price_change_percentage_24h.usd.toFixed(2)}%
-                        </p>
-                    </div>
-                )
-            }
-        },
-        {
-            header: "Price",
-            cellClassName: "price-cell",
-            cell:(coin)=> {
-                return <p>{formatCurrency(coin.item.data.price)}</p>
-            },
-        }
-    ]
+    // Safety check to prevent .slice errors
+    const coins = trendingData?.coins || [];
 
     return (
-        <div id={'trending-coins'}>
-            <h2 className={"text-2xl font-bold pl-3 pb-3"}>Trending Coins</h2>
-            <div>
-                <DataTable
-                    data={trendingCoins.coins.slice(0,6) || []}
-                    columns={columns}
-                    rowKey={(coin) => coin.item.id}
-                    tableClassName={"trending-coins-table"}
-                    headerCellClassName={"py-3!"}
-                    bodyCellClassName={"py-2!"}
-                />
-            </div>
-        </div>
-    )
+        <section id="trending-coins" className="w-full">
+            <h2 className="text-2xl font-bold pl-3 pb-5 text-zinc-100">
+                Trending Coins
+            </h2>
+            <TrendingList initialCoins={coins} />
+        </section>
+    );
 }
-export default TrendingCoins
+
+export default TrendingCoins;
