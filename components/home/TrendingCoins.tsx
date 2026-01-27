@@ -19,9 +19,6 @@ const TrendingCoins = async () => {
 
     return (
         <section id="trending-coins" className="w-full">
-            <h2 className="text-2xl font-bold pl-3 pb-5 text-zinc-100">
-                Trending Coins
-            </h2>
             <TrendingList initialCoins={coins} />
         </section>
     );

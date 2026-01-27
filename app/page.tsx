@@ -1,11 +1,10 @@
-'use server';
-
 import React, {Suspense} from "react";
 import CoinOverview from "@/components/home/CoinOverview";
 import TrendingCoins from "@/components/home/TrendingCoins";
 import {CoinOverviewFallback, CryptoDashboardFallback, TrendingCoinsFallback} from "@/components/home/fallback";
 import CryptoDashboard from "@/components/CryptoDashboard";
 import AnalyticsCard from "@/components/AnalyticsCard";
+import Categories from "@/components/Categories";
 
 const Page = async () => {
 
@@ -34,7 +33,9 @@ const Page = async () => {
           </section>
 
         <section className={"w-full mt-7 space-y-4"}>
-            <p>Categories</p>
+            <Suspense fallback={<p>Loading categories...</p>}>
+                <Categories />
+            </Suspense>
         </section>
       </main>
     </div>

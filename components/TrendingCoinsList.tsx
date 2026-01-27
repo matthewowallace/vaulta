@@ -59,7 +59,10 @@ const TrendingList = ({ initialCoins }: TrendingListProps) => {
     const displayData = isExpanded ? initialCoins : initialCoins.slice(0, 6);
 
     return (
-        <div className="flex flex-col w-full overflow-hidden items-center">
+        <div className="flex flex-col w-full overflow-hidden pl-10 pr-10">
+            <h2 className="text-2xl font-bold pl-3 pb-5 text-zinc-100">
+                Trending Coins
+            </h2>
             <DataTable
                 data={displayData}
                 columns={columns}
@@ -73,7 +76,7 @@ const TrendingList = ({ initialCoins }: TrendingListProps) => {
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
                     className={cn(
-                        "mt-4 w-90 flex items-center justify-center gap-2 py-3 px-6 rounded-xl border border-zinc-800 transition-all active:scale-95 font-bold text-sm shadow-sm ",
+                        "mt-4 w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl border border-zinc-800 transition-all active:scale-95 font-bold text-sm shadow-sm ",
                         isExpanded
                             ? "bg-[#76da4480] text-white border-[#76da44] hover:bg-[#76da4440] border-[#76da44]"
                             : "bg-white/5 text-slate-300 border-white/10 hover:bg-white/10"
