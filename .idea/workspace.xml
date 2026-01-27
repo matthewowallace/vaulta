@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9567f4c-bb91-4c44-9a59-16e3ae4b4899" name="Changes" comment="Analytics chart update Added">
+    <list default="true" id="c9567f4c-bb91-4c44-9a59-16e3ae4b4899" name="Changes" comment="Candlestick chart added reliablity index and updated Trending coins list">
+      <change afterPath="$PROJECT_DIR$/components/Categories.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CandlestickChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CandlestickChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TrendingCoinsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/TrendingCoinsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/home/TrendingCoins.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/home/TrendingCoins.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +66,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/datatable&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on feat/datatable&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
@@ -132,7 +134,12 @@
       <workItem from="1769001819104" duration="11309000" />
       <workItem from="1769029422961" duration="1620000" />
       <workItem from="1769031383360" duration="2134000" />
-      <workItem from="1769097455268" duration="4018000" />
+      <workItem from="1769097455268" duration="5763000" />
+      <workItem from="1769196516108" duration="1360000" />
+      <workItem from="1769260600791" duration="17756000" />
+      <workItem from="1769285956833" duration="755000" />
+      <workItem from="1769371428465" duration="787000" />
+      <workItem from="1769520252074" duration="6835000" />
     </task>
     <task id="LOCAL-00001" summary="CandleStick Chart Added">
       <option name="closed" value="true" />
@@ -150,7 +157,23 @@
       <option name="project" value="LOCAL" />
       <updated>1769010242410</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Candlestick chart fix max data removed">
+      <option name="closed" value="true" />
+      <created>1769110733939</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1769110733939</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Candlestick chart added reliablity index and updated Trending coins list">
+      <option name="closed" value="true" />
+      <created>1769285103088</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1769285103088</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +182,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CandleStick Chart Added" />
     <MESSAGE value="Analytics chart update Added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Analytics chart update Added" />
+    <MESSAGE value="Candlestick chart fix max data removed" />
+    <MESSAGE value="Candlestick chart added reliablity index and updated Trending coins list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Candlestick chart added reliablity index and updated Trending coins list" />
   </component>
 </project>

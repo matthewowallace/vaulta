@@ -45,7 +45,7 @@ const CryptoDashboard = () => {
 
   return (
       // Outer Container Background
-      <div className="w-full flex flex-col justify-center transition-colors duration-500 bg-gray-50 dark:bg-zinc-950">
+      <div className="w-full h-full flex flex-col justify-center transition-colors duration-500 bg-gray-50 dark:bg-zinc-950">
 
         {/* Theme Toggle Button */}
         <button
@@ -56,7 +56,7 @@ const CryptoDashboard = () => {
         </button>
 
         {/* Card Container */}
-        <div className="flex flex-col transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-zinc-800">
+        <div className="h-full flex flex-col transition-colors duration-500 bg-[#F9F9F7] dark:bg-zinc-900 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-zinc-800">
 
           {/* Header Section */}
           <div className="flex justify-between items-start mb-14">
