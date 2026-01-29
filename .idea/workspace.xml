@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9567f4c-bb91-4c44-9a59-16e3ae4b4899" name="Changes" comment="Categories Added to list Trending coins Updated">
+    <list default="true" id="c9567f4c-bb91-4c44-9a59-16e3ae4b4899" name="Changes" comment="Categories Fallback Added">
+      <change afterPath="$PROJECT_DIR$/app/coins/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +62,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feat/datatable",
+    "git-widget-placeholder": "#6 on feat/datatable",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
@@ -135,7 +136,7 @@
       <workItem from="1769285956833" duration="755000" />
       <workItem from="1769371428465" duration="787000" />
       <workItem from="1769520252074" duration="7086000" />
-      <workItem from="1769696099751" duration="4498000" />
+      <workItem from="1769696099751" duration="8501000" />
     </task>
     <task id="LOCAL-00001" summary="CandleStick Chart Added">
       <option name="closed" value="true" />
@@ -177,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769532715370</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Categories Fallback Added">
+      <option name="closed" value="true" />
+      <created>1769711799814</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1769711799814</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +198,7 @@
     <MESSAGE value="Candlestick chart fix max data removed" />
     <MESSAGE value="Candlestick chart added reliablity index and updated Trending coins list" />
     <MESSAGE value="Categories Added to list Trending coins Updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Categories Added to list Trending coins Updated" />
+    <MESSAGE value="Categories Fallback Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Categories Fallback Added" />
   </component>
 </project>
