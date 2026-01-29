@@ -96,3 +96,60 @@ export const CryptoDashboardFallback = () => {
         </div>
     )
 }
+
+export const CategoriesFallback = () => {
+    const columns: DataTableColumn<any>[] = [
+        {
+            header: 'Categories',
+            cellClassName: 'category-cell',
+            cell: () => <div className="category-skeleton skeleton animate-pulse" />
+        },
+        {
+            header: 'Top Gainers',
+            cellClassName: 'top-gainers-cell',
+            cell: () => (
+                <div className="flex items-center gap-1">
+                    {[...Array(3)].map((_, i) => (
+                        <div key={i} className="coin-skeleton skeleton animate-pulse" />
+                    ))}
+                </div>
+            )
+        },
+        {
+            header: '24h Change',
+            cellClassName: 'change-header-cell',
+            cell: () => (
+                <div className="change-cell">
+                    <div className="change-icon skeleton animate-pulse" />
+                    <div className="value-skeleton-sm skeleton animate-pulse" />
+                </div>
+            ),
+        },
+        {
+            header: 'Market Cap',
+            cellClassName: 'market-cap-cell',
+            cell: () => <div className="value-skeleton-md skeleton animate-pulse" />,
+        },
+        {
+            header: '24h Volume',
+            cellClassName: 'volume-cell',
+            cell: () => <div className="value-skeleton-lg skeleton animate-pulse" />,
+        }
+    ];
+
+    const data = Array(10).fill({});
+
+    return (
+        <div id="categories-fallback" className="custom-scrollbar">
+            <div className={"flex flex-col w-full overflow-hidden pl-10 pr-10 mb-20"}>
+                <h4 className="text-2xl font-bold pl-3 pb-5 text-zinc-100">Top Categories</h4>
+                <DataTable
+                    columns={columns}
+                    data={data}
+                    rowKey={(_, index) => index}
+                    tableClassName="mt-3 p-4"
+                />
+            </div>
+        </div>
+    )
+}
